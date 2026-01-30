@@ -32,8 +32,7 @@ export default function App() {
             <Card></Card>
             <Card></Card>
             <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            
           </ContainerCard>
         </div>
         <FooterComponent></FooterComponent>
