@@ -8,31 +8,57 @@ import FooterComponent from "./components/FooterComponent/FooterComponent";
 import InputCreateCard from "./components/InputCreateCard/InputCreateCard";
 
 export default function App() {
+  const [questionCard, setQuestionCard] = useState([]);
   const [optionCreateCard, setOptionCreateCard] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [description, setDescription] = useState("");
+  const [answer, setAnswer] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newCard = {
+      question,
+      description,
+      answer,
+    };
+    setQuestionCard([...questionCard, newCard]);
+    setQuestion("");
+    setDescription("");
+    setAnswer("");
+    setOptionCreateCard(false);
+    console.log(questionCard);
   };
 
   return (
     <>
       <div className={styles.app}>
-        <div className="container h-100">
+        <div className="container h-100 mt">
           <Navbar
             onClickCreateCard={() => setOptionCreateCard(!optionCreateCard)}
           ></Navbar>
         </div>
 
         {optionCreateCard && (
-          <InputCreateCard handleSubmit={handleSubmit}></InputCreateCard>
+          <InputCreateCard
+            handleSubmit={handleSubmit}
+            question={question}
+            description={description}
+            answer={answer}
+            setQuestion={setQuestion}
+            setDescription={setDescription}
+            setAnswer={setAnswer}
+          ></InputCreateCard>
         )}
         <div className="container h-100">
           <ContainerCard>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            
+            {questionCard.map((card, index) => (
+              <Card
+                key={index}
+                question={card.question}
+                description={card.description}
+                answer={card.answer}
+              />
+            ))}
           </ContainerCard>
         </div>
         <FooterComponent></FooterComponent>
