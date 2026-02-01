@@ -33,16 +33,7 @@ O objetivo técnico deste projeto foi consolidar os fundamentos da biblioteca, d
 
 ## 🛠️ Metodologia de Desenvolvimento
 
-Para garantir a organização e a qualidade das entregas, o projeto seguiu práticas de **Metodologias Ágeis**:
-
-* **Scrum/Kanban**: Organização de tarefas em Sprints através de um quadro visual (To Do, In Progress, Done).
-* **MVP (Minimum Viable Product)**: Foco inicial nas funcionalidades essenciais para entrega de valor imediata.
-
----
-
-## 🎨 Interface (Dark Mode)
-
-A aplicação foi desenhada com foco na experiência do usuário e redução da fadiga visual, utilizando uma paleta de cores **Dark Mode**.
+* **Scrum/Kanban**: Organização de tarefas em Sprints através de um quadro visual (To Do, In Progress, Done)
 
 ---
 
