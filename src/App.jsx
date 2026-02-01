@@ -1,38 +1,46 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
-import styles from "./App.module.css";
-import Navbar from "./components/Navbar/Navbar";
-import ContainerCard from "./components/ContainerCard/ContainerCard";
-import Card from "./components/Card/Card";
-import FooterComponent from "./components/FooterComponent/FooterComponent";
-import InputCreateCard from "./components/InputCreateCard/InputCreateCard";
+import "bootstrap/dist/css/bootstrap.min.css"
+import { useState } from "react"
+import styles from "./App.module.css"
+import Navbar from "./components/Navbar/Navbar"
+import ContainerCard from "./components/ContainerCard/ContainerCard"
+import Card from "./components/Card/Card"
+import FooterComponent from "./components/FooterComponent/FooterComponent"
+import InputCreateCard from "./components/InputCreateCard/InputCreateCard"
 
 export default function App() {
-  const [questionCard, setQuestionCard] = useState([]);
-  const [optionCreateCard, setOptionCreateCard] = useState(false);
-  const [question, setQuestion] = useState("");
-  const [description, setDescription] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [questionCard, setQuestionCard] = useState(() => {
+    const saved = localStorage.getItem("flashcards_data")
+    return saved ? JSON.parse(saved) : []
+  })
+
+  const [optionCreateCard, setOptionCreateCard] = useState(false)
+  const [question, setQuestion] = useState("")
+  const [description, setDescription] = useState("")
+  const [answer, setAnswer] = useState("")
 
   const handleDeleteCard = (index) => {
-    const newList = questionCard.filter((_, i) => i !== index);
-    setQuestionCard(newList);
-  };
+    const newList = questionCard.filter((_, i) => i !== index)
+    setQuestionCard(newList)
+    localStorage.setItem("flashcards_data", JSON.stringify(newList))
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const newCard = {
       question,
       description,
       answer,
-    };
-    setQuestionCard([...questionCard, newCard]);
-    setQuestion("");
-    setDescription("");
-    setAnswer("");
-    setOptionCreateCard(false);
-    console.log(questionCard);
-  };
+    }
+    const newList = [...questionCard, newCard]
+    
+    setQuestionCard(newList)
+    localStorage.setItem("flashcards_data", JSON.stringify(newList))
+    
+    setQuestion("")
+    setDescription("")
+    setAnswer("")
+    setOptionCreateCard(false)
+  }
 
   return (
     <>
@@ -54,6 +62,7 @@ export default function App() {
             setAnswer={setAnswer}
           ></InputCreateCard>
         )}
+        
         <div className="container h-100">
           <ContainerCard>
             {questionCard.map((card, index) => (
@@ -70,5 +79,5 @@ export default function App() {
         <FooterComponent></FooterComponent>
       </div>
     </>
-  );
+  )
 }
