@@ -1,5 +1,4 @@
 export default function InputCreateCard(props) {
-
   return (
     <div className="container mt-3">
       <div className="card p-3 bg-light text-dark rounded-3">

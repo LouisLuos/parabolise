@@ -14,6 +14,11 @@ export default function App() {
   const [description, setDescription] = useState("");
   const [answer, setAnswer] = useState("");
 
+  const handleDeleteCard = (index) => {
+    const newList = questionCard.filter((_, i) => i !== index);
+    setQuestionCard(newList);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newCard = {
@@ -57,6 +62,7 @@ export default function App() {
                 question={card.question}
                 description={card.description}
                 answer={card.answer}
+                onDelete={() => handleDeleteCard(index)}
               />
             ))}
           </ContainerCard>
