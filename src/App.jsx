@@ -31,6 +31,8 @@ export default function App() {
       description,
       answer,
     }
+
+    if (!question.trim() || !description.trim() || !answer.trim()) return alert("Preencha todos os campos")
     const newList = [...questionCard, newCard]
     
     setQuestionCard(newList)
